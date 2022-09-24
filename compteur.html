@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Compteur de calories</title>
+    <meta charset="UTF-8" />
+    <meta name="author" content="22014043" />
+    <style>
+        body {
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        #conteneur {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            grid-gap: 20px;
+        }
+
+        #selection {
+            min-width: 500px;
+            border-right: 1px solid black;
+        }
+        #selection div {
+            margin-bottom: 10px;
+        }
+    </style>
+
+    <script src="data.js"></script>
+    <script src="compteur.js"></script>
+
+</head>
+<body>
+<h1>Compteur de calories</h1>
+<div id="conteneur">
+    <form id="selection">
+        <h2>Ingrédient</h2>
+        <div><label>Choisir l'ingrédient à ajouter
+            <select name="ingredient" id="select-ingredient">
+              
+            </select>
+           
+        </label></div>
+
+        <div><label>Poids <input type="text" name="poids"> en grammes</label></div>
+        <button type="submit">Ajouter</button>
+    </form>
+    <section>
+        <h2>Mon total</h2>
+        <div id="compteur"></div>
+    </section>
+</div>
+<script>
+"use strict";
+formBase();
+let formula = document.getElementById("selection");
+formula.addEventListener("submit", ajouterIngredient2);
+function ajouterIngredient2(e){
+    e.preventDefault();
+    let compteur = document.getElementById("compteur");
+    let ingredientListe = document.getElementById("select-ingredient");
+    let results = document.createElement("li");
+    let para = document.createElement("p");
+    let displayText = ingredientListe.options[ingredientListe.selectedIndex].value;
+    let sortText = displayText.split("-");
+    console.log(sortText);
+    let displayId = ingredientListe.options[ingredientListe.selectedIndex].id;
+    console.log(displayText);
+    console.log(displayId);
+    let valeur = document.querySelector("input").value ;
+    let macros = compteurSet();
+    results.appendChild(document.createTextNode(valeur +" grammes de :"+ sortText[1] + " donne "+ macros[0] + " Kcal"));
+    compteur.appendChild(results);
+    para.appendChild(document.createTextNode(" Proteines: "+ macros[1].toFixed(2) + ", Glucides : "+ macros[2].toFixed(2) + ", Lipides: "+ macros[3].toFixed(2) + ",Sucres : "+ macros[4].toFixed(2) ))
+    compteur.appendChild(para);
+    console.log("the work is not done yet you need to style all the papers and the opp to makesuus si  i  iintand not an  user inpût unless the user is annopnyme if the user == anonyme the upload the trial unless if(er == 84)")
+}
+reloadForm();
+</script>
+</body>
+</html>
